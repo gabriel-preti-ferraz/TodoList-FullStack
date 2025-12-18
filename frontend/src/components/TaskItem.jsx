@@ -1,3 +1,5 @@
+import "../css/TaskItem.css"
+
 function TaskItem({ task }) {
     function onRemoveClick() { 
         alert(`Remove task: ${task.title}`)

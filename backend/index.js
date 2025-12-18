@@ -50,3 +50,25 @@ app.get("/tasks/list", async (req, res) => {
         return res.status(500).send({ message: "Internal server error" })
     }
 })
+
+app.delete("/tasks/delete/:id", async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const database = require('./db')
+        const Task = require('./model')
+
+        await database.sync()
+        const task = await Task.findByPk(id)
+
+        if (!task) {
+            return res.status(404).send({ message: "Task not found."})
+        } else if (task) {
+            await task.destroy()
+            return res.send({message: "Task deleted successfully."})
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({ message: "Internal server error" })
+    }
+})

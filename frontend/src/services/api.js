@@ -9,3 +9,8 @@ export async function listTask() {
     const response = await axios.get('http://localhost:8080/tasks/list')
     return response.data
 }
+
+export async function delTask(id) {
+    const response = await axios.delete(`http://localhost:8080/tasks/delete/${id}`)
+    return response.data
+}

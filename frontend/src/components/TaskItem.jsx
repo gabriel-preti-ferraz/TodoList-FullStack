@@ -1,8 +1,12 @@
 import "../css/TaskItem.css"
+import { delTask } from '../services/api.js'
 
 function TaskItem({ task }) {
     function onRemoveClick() { 
-        alert(`Remove task: ${task.title}`)
+        delTask(task.id)
+        
+        window.location.reload()
+        alert("Task removed!")
     }
 
     return (

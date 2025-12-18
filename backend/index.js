@@ -35,3 +35,18 @@ app.post("/tasks/add", async (req, res) => {
         return res.status(500).send({ message: "Internal server error" })
     }
 })
+
+app.get("/tasks/list", async (req, res) => {
+    try {
+        const database = require('./db')
+        const Task = require ('./model')
+
+        await database.sync()
+        const tasks = await Task.findAll()
+
+        return res.send({ tasks })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send({ message: "Internal server error" })
+    }
+})

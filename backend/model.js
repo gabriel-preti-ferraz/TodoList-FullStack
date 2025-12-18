@@ -15,7 +15,7 @@ const Task = database.define('task', {
     description: {
         type: Sequelize.STRING,
         allowNull: false,
-    }
+    },
 })
 
 module.exports = Task

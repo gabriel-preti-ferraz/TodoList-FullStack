@@ -1,20 +1,19 @@
 const express = require('express')
 const app = express()
 const PORT = 8080
+const cors = require('cors')
 
 app.use(express.json())
+app.use(cors())
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`))
 
 
 app.post("/tasks/add", async (req, res) => {
     const { title, description } = req.body
+    //console.log(req)
 
-    if (!title) {
-        res.status(418).send({ message: "Title is required" })
-    }
-    if (!description) {
-        res.status(418).send({ message: "Description is required" })
-    }
+    if (!title) {res.status(418).send({ message: "Title is required" })}
+    if (!description) {res.status(418).send({ message: "Description is required" })}
 
     try {
         const database = require('./db')
@@ -30,7 +29,7 @@ app.post("/tasks/add", async (req, res) => {
                 description: nTask.description
             }
         })
-    } catch (error) {
+    } catch (error) { 
         console.log(error)
         return res.status(500).send({ message: "Internal server error" })
     }

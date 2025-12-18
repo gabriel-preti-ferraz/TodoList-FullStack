@@ -6,9 +6,9 @@ function Home() {
     const [taskDescription, setTaskDescription] = useState('')
 
     function addTask(e) {
-        e.preventDefault()
+        e.preventDefault() // prevent page reload on form submit
 
-        if (!taskTitle.trim() || !taskDescription.trim()) return
+        if (!taskTitle.trim() || !taskDescription.trim()) return // verify if inputs are not empty
 
     }
 
